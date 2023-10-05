@@ -1,7 +1,7 @@
 {
-  "name": "@adminkit/core",
+  "name": "@Blp Gresik/core",
   "version": "3.4.0",
-  "description": "AdminKit - Bootstrap 5 Admin Template",
+  "description": "Blp Gresik - Bootstrap 5 Admin Template",
   "keywords": [
     "bootstrap",
     "bootstrap 5",
@@ -19,16 +19,16 @@
     "ui kit",
     "web"
   ],
-  "homepage": "https://adminkit.io/",
+  "homepage": "https://Blp Gresik.io/",
   "bugs": {
-    "url": "https://github.com/adminkit/adminkit/issues"
+    "url": "https://github.com/Blp Gresik/Blp Gresik/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adminkit/adminkit.git"
+    "url": "git+https://github.com/Blp Gresik/Blp Gresik.git"
   },
   "license": "MIT",
-  "author": "Paul Laros <support@adminkit.io>",
+  "author": "Paul Laros <support@Blp Gresik.io>",
   "files": [
     "dist"
   ],
