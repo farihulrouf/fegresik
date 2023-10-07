@@ -12,7 +12,7 @@
     <body>
         <div class="container mt-5">
             <div class="d-flex justify-content-end mb-3">
-                <input type="text" class="form-control w-25 end-0" id="inputText" placeholder="Cari Paket">
+                <input type="text" class="form-control w-25 end-0" id="inputText" placeholder="Cari Jasa Konsultasi">
             </div>
             <div class="table-responsive">
                 <table class="table table-striped" >
@@ -20,7 +20,7 @@
                         <tr>
                             <th>Kode</th>
                             <th>Satuan</th>
-                            <th>Paket</th>
+                            <th>Jasa Konsultasi</th>
                             <th>Metode</th>
                             <th>Tanggal kontrak</th>
                         </tr>
@@ -31,7 +31,7 @@
                         <tr>
                             <th>Kode</th>
                             <th>Satuan</th>
-                            <th>Paket</th>
+                            <th>Jasa Konsultasi</th>
                             <th>Metode</th>
                             <th>Tanggal kontrak</th>
                         </tr>
@@ -96,10 +96,10 @@
                     dataTable.removeChild(dataTable.firstChild);
                 }
 
-                let url = 'https://info.dresstyleone.com/public/api/datapakets/getall?page='+i+'&tahun=2023';
+                let url = 'https://info.dresstyleone.com/public/api/dataJasa Konsultasis/getall?page='+i+'&tahun=2023';
 
                 if (searchText !== "") {
-                    url = 'https://info.dresstyleone.com/public/api/datapakets/getall?page='+i+'&tahun=2023&s='+searchText;
+                    url = 'https://info.dresstyleone.com/public/api/dataJasa Konsultasis/getall?page='+i+'&tahun=2023&s='+searchText;
                 }
 
                 fetch(url)
@@ -110,7 +110,7 @@
                             row.innerHTML = `
                                 <td>${data.kode_rup}</td>
                                 <td>${data.satuan_kerja}</td>
-                                <td>${data.nama_paket}</td>
+                                <td>${data.nama_Jasa Konsultasi}</td>
                                 <td>${data.metode_pengadaan}</td>
                                 <td>${data.tgl_kontrak}</td>
                             `;

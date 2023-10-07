@@ -1,4 +1,4 @@
-fetch('http://localhost:8000/api/datapakets/getall')
+fetch('http://localhost:8000/api/dataJasa Konsultasis/getall')
     .then(res => res.json())
     .then(data => {
         console.log('ini data', data.data);
@@ -12,7 +12,7 @@ async function displayProducts(products) {
         html += '<tr>';
         html += `
             <td>${product.kode_rup}</td>
-            <td>${product.nama_paket}</td>
+            <td>${product.nama_Jasa Konsultasi}</td>
             <td>${product.satuan_kerja}$</td>`;
         html += '</tr>';
     })
