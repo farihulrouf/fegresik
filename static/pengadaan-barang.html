@@ -298,11 +298,17 @@
                     "type": "GET",
                     "dataType": "JSON"
                 },
-
+            //    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+            //$(nTd).html("<a href='tel:"+oData.TelephoneNumber+"'>"+oData.TelephoneNumber+"</a>");
+        //}
                 columns: [
                     { data: "kode_rup" },
                     { data: "satuan_kerja" },
-                    { data: "nama_paket" },
+                    { data: "nama_paket",
+                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                            $(nTd).html("<a href='detail-project.html'>"+oData.nama_paket+"</a>");
+                        }
+                     },
                     { data: "metode_pengadaan" },
                     { data: "jenis" },
                     { data: "tgl_kontrak" },
