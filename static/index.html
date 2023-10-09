@@ -29,12 +29,12 @@
 
 </head>
 
-<body>
+<body onload="load_data('2023','SELURUH SATUAN KERJA')">
   <div class="wrapper">
     <nav id="sidebar" class="sidebar js-sidebar">
       <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="index.html">
-          <span class="align-middle">Admin</span>
+          <span class="align-middle">BLP GRESIK</span>
         </a>
 
         <ul class="sidebar-nav">
@@ -153,7 +153,7 @@
             <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <h5 class="card-title mb-0">Barang</h5>
+                  <h5 class="card-title mb-0"><a href="pengadaan-barang.html">Barang</a></h5>
                 </div>
                 <table class="table mb-0">
                   <tbody>
@@ -177,32 +177,7 @@
             <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <h5 class="card-title mb-0">Pekerjaan Konstruksi</h5>
-                </div>
-
-                <table class="table mb-0">
-                  <tbody>
-                    <tr>
-                      <td>Proses Tender</td>
-                      <td class="text-end">4306</td>
-                    </tr>
-                    <tr>
-                      <td>Batal Tender</td>
-                      <td class="text-end">3801</td>
-                    </tr>
-                    <tr>
-                      <td>Selesai Tender</td>
-                      <td class="text-end">1689</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <h4 class="p-2 mt-4 mb-2">Rp 169.037.690.021</h4>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
-              <div class="card flex-fill">
-                <div class="card-header">
-                  <h5 class="card-title mb-0">Jasa Konstruksi</h5>
+                  <h5 class="card-title mb-0"><a href="pengadaan-konstruksi.html">Konstruksi</a></h5>
                 </div>
 
                 <table class="table mb-0">
@@ -227,7 +202,32 @@
             <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
               <div class="card flex-fill">
                 <div class="card-header">
-                  <h5 class="card-title mb-0">Jasa Lainya</h5>
+                  <h5 class="card-title mb-0"><a href="jasa-konsultasi.html">Konsultasi</a></h5>
+                </div>
+
+                <table class="table mb-0">
+                  <tbody>
+                    <tr>
+                      <td>Proses Tender</td>
+                      <td class="text-end">4306</td>
+                    </tr>
+                    <tr>
+                      <td>Batal Tender</td>
+                      <td class="text-end">3801</td>
+                    </tr>
+                    <tr>
+                      <td>Selesai Tender</td>
+                      <td class="text-end">1689</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h4 class="p-2 mt-4 mb-2">Rp 169.037.690.021</h4>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
+              <div class="card flex-fill">
+                <div class="card-header">
+                  <h5 class="card-title mb-0"><a href="jasa-lainya.html">Jasa Lainya</a></h5>
                 </div>
 
                 <table class="table mb-0">
@@ -449,32 +449,56 @@
 
       var text = $("#tahun option:selected").text();
       var datasatuan = $("#satuankerja option:selected").text();
-      console.log(datasatuan)
+     // console.log(datasatuan)
       load_data(text, datasatuan)
-      //getData(text, datasatuan)
-      //SELURUH SATUAN KERJA
+     
     });
+    $("#satuankerja").on("change", function () {
+      var text = $("#tahun option:selected").text();
+      var datasatuan = $("#satuankerja option:selected").text();
+     
+      load_data(text, datasatuan)
+    })
 
-    function load_data(tahun, satuan) {
+    function load_data(tahun, datasatuan) {
       // clear_data()
-      fetch("http://localhost:8000/api/datapakets/getstatic?tahun="+tahun).then(res => res.json())
+      var data_api = ''
+      if(datasatuan=='SELURUH SATUAN KERJA'){
+        data_api="http://localhost:8000/api/datapakets/getstatic?tahun="+tahun
+      }
+      else {
+        data_api="http://localhost:8000/api/datapakets/getstatic?tahun="+tahun+"&sk="+datasatuan
+      }
+      //fetch("http://localhost:8000/api/datapakets/getstatic?tahun=" + tahun).then(res => res.json())
+        fetch(data_api).then(res => res.json())
         .then(res => {
           str_body = ""
           console.log(res)
           res.data.forEach(r => {
             str_body += `
+             
               <div class="card card-style">
-                <div class="card-body">
-                  <div class="col mt-0 w-100">
-                    <h5 class="card-title">${r["jenis"]}</h5>
-                    <div class="col-auto">
-                      <div class="stat text-primary">
-                        <i class="align-middle" data-feather="truck"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">${r["jenis"]}</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="truck"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3">${r["jumlah"]}</h1>
+												<div class="mb-0">
+													<span class="text-primary"> <i class="mdi mdi-arrow-bottom-right"></i>Rp ${r["total"].toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</span>
+													<span class="text-muted">Hps</span>
+												</div>
+											</div>
+										</div>
+
             `
           });
           $("#tbody").html(str_body)
@@ -485,108 +509,6 @@
   </script>
 
 
-  <script>
-    /*
-    fetch("http://localhost:8000/api/datapakets/getstatic?tahun=2023")
-      .then((response) => response.json())
-      .then((data) => {
-        for (i = 0; i < data["data"].length; i++) {
-          // console.log(data["products"][i]["id"]);
-          temp = document.createElement("div");
-          //div.classList.add("myDiv")
-          temp.className = "card card-style";
-          temp.innerHTML =
-            '<div class="card-body">' +
-            '<div class="row">' +
-            '<div class="col mt-0 w-100">' +
-            '<h5 class="card-title"> ' +
-            data["data"][i]["jenis"] +
-            "</h5>" +
-            "</div>" +
-            '<div class="col-auto">' +
-            '<div class="stat text-primary">' +
-            '<i class="align-middle" data-feather="truck">' +
-            "</i>" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            '<h1 class="mt-1 mb-3">' +
-            data["data"][i]["jumlah"] +
-            "</h1>" +
-            '<div class="mb-0">' +
-            '<span class="text-danger">' +
-            '<i class="mdi mdi-arrow-bottom-right">' +
-            "</i>" +
-            "</span>" +
-            '<span class="text-muted">' +
-            "Rp " +
-            data["data"][i]["total"]
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ".") +
-            "</span>" +
-            "</div>" +
-            " </div>";
-          document.getElementsByClassName("wix")[0].appendChild(temp);
-        }
-      });
-
-    function selectedSubjectName() {
-      var subjectIdNode = document.getElementById("subjectName");
-      var value = subjectIdNode.options[subjectIdNode.selectedIndex].text;
-      console.log("The selected value=" + value);
-      getDataApi(value);
-    }
-
-    function getDataApi(value) {
-      
-      const api = "http://localhost:8000/api/datapakets/getstatic?tahun=";
-      fetch(api + value)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          for (i = 0; i < data["data"].length; i++) {
-            // console.log(data["products"][i]["id"]);
-            temp = document.createElement("div");
-            //div.classList.add("myDiv")
-            temp.className = "card card-style";
-            temp.innerHTML =
-              '<div class="card-body">' +
-              '<div class="row">' +
-              '<div class="col mt-0 w-100">' +
-              '<h5 class="card-title"> ' +
-              data["data"][i]["jenis"] +
-              "</h5>" +
-              "</div>" +
-              '<div class="col-auto">' +
-              '<div class="stat text-primary">' +
-              '<i class="align-middle" data-feather="truck">' +
-              "</i>" +
-              "</div>" +
-              "</div>" +
-              "</div>" +
-              '<h1 class="mt-1 mb-3">' +
-              data["data"][i]["jumlah"] +
-              "</h1>" +
-              '<div class="mb-0">' +
-              '<span class="text-danger">' +
-              '<i class="mdi mdi-arrow-bottom-right">' +
-              "</i>" +
-              "</span>" +
-              '<span class="text-muted">' +
-              "Rp " +
-              data["data"][i]["total"]
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ".") +
-              "</span>" +
-              "</div>" +
-              " </div>";
-            document.getElementsByClassName("wix")[0].appendChild(temp);
-          }
-        });
-        
-      }
-      */
-  </script>
 </body>
 
 </html>
