@@ -282,10 +282,10 @@
         function getData(text, dinas) {
             var api_ = ""
             if (dinas == "SELURUH SATUAN KERJA") {
-                api_ = "http://localhost:8000/api/datapakets/getdata?tahun="+text+'&jenis=Jasa Lainnya'
+                api_ = "https://info.dresstyleone.com/public/api/datapakets/getdata?tahun="+text+'&jenis=Jasa Lainnya'
             }
             else {
-                api_ = "http://localhost:8000/api/datapakets/getdata?tahun="+text+'&jenis=Jasa Lainnya'+'&satuan='+dinas
+                api_ = "https://info.dresstyleone.com/public/api/datapakets/getdata?tahun="+text+'&jenis=Jasa Lainnya'+'&satuan='+dinas
             }
 
             var table = $("#datatable").DataTable({
