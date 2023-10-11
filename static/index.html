@@ -133,7 +133,7 @@
           <h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
 
           <div class="row">
-            <div class="col-xl-7 col-xxl-7 d-flex flex-wrap gap-3" id="tbody"></div>
+            <div class="col-xl-7 col-xxl-7 d-flex justify-content-between flex-wrap gap-3" id="tbody"></div>
 
             <div class="col-xl-5 col-xxl-5">
               <div class="card flex-fill w-100">
@@ -142,7 +142,7 @@
                 </div>
                 <div class="card-body py-3">
                   <div class="chart chart-sm">
-                    <canvas id="chartjs-dashboard-line"></canvas>
+                    <canvas id="myChart"></canvas>
                   </div>
                 </div>
               </div>
@@ -288,7 +288,8 @@
   </div>
 
   <script src="js/app.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <!--
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       var ctx = document
@@ -317,7 +318,7 @@
           ],
           datasets: [
             {
-              label: "Sales ($)",
+              label: "Metode",
               fill: true,
               backgroundColor: gradient,
               borderColor: window.theme.primary,
@@ -370,6 +371,7 @@
       });
     });
   </script>
+-->
   <!-- jQuery -->
   <!-- Popper Js -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -383,7 +385,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
   <!-- Hierarchy Select Js -->
-  <script src="js/hierarchy-select.min.js"></script>
+
 
   <script>
     $(document).ready(function () {
@@ -449,28 +451,28 @@
 
       var text = $("#tahun option:selected").text();
       var datasatuan = $("#satuankerja option:selected").text();
-     // console.log(datasatuan)
+      // console.log(datasatuan)
       load_data(text, datasatuan)
-     
+
     });
     $("#satuankerja").on("change", function () {
       var text = $("#tahun option:selected").text();
       var datasatuan = $("#satuankerja option:selected").text();
-     
+
       load_data(text, datasatuan)
     })
 
     function load_data(tahun, datasatuan) {
       // clear_data()
       var data_api = ''
-      if(datasatuan=='SELURUH SATUAN KERJA'){
-        data_api="https://info.dresstyleone.com/public/api/datapakets/getstatic?tahun="+tahun
+      if (datasatuan == 'SELURUH SATUAN KERJA') {
+        data_api = "http://localhost:8000/api/datapakets/getdatametode?tahun=" + tahun
       }
       else {
-        data_api="https://info.dresstyleone.com/public/api/datapakets/getstatic?tahun="+tahun+"&sk="+datasatuan
+        data_api = "http://localhost:8000/api/datapakets/getdatametode?tahun=" + tahun + "&sk=" + datasatuan
       }
       //fetch("http://localhost:8000/api/datapakets/getstatic?tahun=" + tahun).then(res => res.json())
-        fetch(data_api).then(res => res.json())
+      fetch(data_api).then(res => res.json())
         .then(res => {
           str_body = ""
           console.log(res)
@@ -481,7 +483,7 @@
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">${r["jenis"]}</h5>
+														<h5 class="card-title"><a href="${r["url"]}.html">${r["metode_pengadaan"]}</a></h5>
 													</div>
 
 													<div class="col-auto">
@@ -493,7 +495,7 @@
 												<h1 class="mt-1 mb-3">${r["jumlah"]}</h1>
 												<div class="mb-0">
 													<span class="text-primary"> <i class="mdi mdi-arrow-bottom-right"></i>Rp ${r["total"].toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</span>
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</span>
 													<span class="text-muted">Hps</span>
 												</div>
 											</div>
@@ -507,7 +509,66 @@
 
 
   </script>
+  <script>
+    var metode_name = [], metode_pengadaan_total = [], metode_jumlah = []
 
+    async function dummyChart() {
+      await getDummyData()
+
+      const ctx = document.getElementById('myChart').getContext('2d');
+
+      const chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+
+        // The data for our dataset
+        data: {
+          labels: metode_name,
+          datasets: [{
+            label: 'Total Hps',
+            backgroundColor: 'blue',
+            borderColor: 'rgb(255, 99, 132)',
+            data: metode_pengadaan_total
+          },
+          {
+            label: 'Jumlah',
+            backgroundColor: 'pink',
+            borderColor: 'rgb(255, 99, 132)',
+            data: metode_jumlah
+          }
+          ]
+        },
+
+        // Configuration options go here
+        options: {
+          tooltips: {
+            mode: 'index'
+          }
+        }
+      })
+    }
+
+    dummyChart()
+
+
+    //Fetch Data from API
+
+    async function getDummyData() {
+      const apiUrl = "https://info.dresstyleone.com/public/api/datapakets/getdatametode?tahun=2023"
+
+      const response = await fetch(apiUrl)
+      const barChatData = await response.json()
+
+      const total = barChatData.data.map((x) => x.total)
+      console.log(total)
+      const jumlah = barChatData.data.map((x) => x.jumlah)
+      const name = barChatData.data.map((x) => x.metode_pengadaan)
+
+      metode_pengadaan_total = total
+      metode_jumlah = jumlah
+      metode_name = name
+    }
+  </script>
 
 </body>
 
