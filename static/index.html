@@ -469,10 +469,10 @@
       // clear_data()
       var data_api = ''
       if (datasatuan == 'SELURUH SATUAN KERJA') {
-        data_api = "http://localhost:8000/api/datapakets/getdatametode?tahun=" + tahun
+        data_api = "https://info.dresstyleone.com/public/api/datapakets/getdatametode?tahun=" + tahun
       }
       else {
-        data_api = "http://localhost:8000/api/datapakets/getdatametode?tahun=" + tahun + "&sk=" + datasatuan
+        data_api = "https://info.dresstyleone.com/public/api/datapakets/getdatametode?tahun=" + tahun + "&sk=" + datasatuan
       }
       //fetch("http://localhost:8000/api/datapakets/getstatic?tahun=" + tahun).then(res => res.json())
       fetch(data_api).then(res => res.json())

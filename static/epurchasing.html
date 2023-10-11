@@ -146,7 +146,7 @@
                     </div>
                 </div>
             </main>
-
+                
             <footer class="footer">
                 <div class="container-fluid">
                     <div class="row text-muted">
@@ -306,9 +306,10 @@
                     { data: "satuan_kerja" },
                     { data: "nama_paket",
                         "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                            $(nTd).html("<a href='detail-project.html'>"+oData.nama_paket+"</a>");
+                            $(nTd).html("<a href='#'>"+oData.nama_paket+"</a>");
                         }
                      },
+                    // $(nTd).html("<a href=#"+"onclick='callModal('data');'>" + oData.nama_paket + "</a>"
                     { data: "metode_pengadaan" },
                     { data: "jenis" },
                     { data: "tgl_kontrak" },
@@ -319,7 +320,9 @@
                 ],
             });
         }
-
+        function callModal(data){
+            console.log('fungsi di panggil', data)
+        }
     </script>
 </body>
 
