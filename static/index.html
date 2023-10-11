@@ -453,6 +453,7 @@
       var datasatuan = $("#satuankerja option:selected").text();
       // console.log(datasatuan)
       load_data(text, datasatuan)
+      dataChart(text, datasatuan)
 
     });
     $("#satuankerja").on("change", function () {
@@ -460,6 +461,8 @@
       var datasatuan = $("#satuankerja option:selected").text();
 
       load_data(text, datasatuan)
+      dataChart(text, datasatuan)
+      //getChartData()
     })
 
     function load_data(tahun, datasatuan) {
@@ -507,13 +510,11 @@
         })
     }
 
-
-  </script>
-  <script>
     var metode_name = [], metode_pengadaan_total = [], metode_jumlah = []
 
-    async function dummyChart() {
-      await getDummyData()
+    async function dataChart(tahun, datasatuan) {
+     // console.log('informasi', tahun, datasatuan)
+      await getChartData(tahun, datasatuan)
 
       const ctx = document.getElementById('myChart').getContext('2d');
 
@@ -548,15 +549,24 @@
       })
     }
 
-    dummyChart()
+    dataChart('2023', 'SELURUH SATUAN KERJA')
 
 
     //Fetch Data from API
 
-    async function getDummyData() {
-      const apiUrl = "https://info.dresstyleone.com/public/api/datapakets/getdatametode?tahun=2023"
+    async function getChartData(tahun, satuan) {
 
-      const response = await fetch(apiUrl)
+      var api_ = ""
+      if (satuan == "SELURUH SATUAN KERJA") {
+         api_ = "https://info.dresstyleone.com/api/datapakets/getdatametode?tahun="+tahun
+       }
+      else {
+         api_ = "https://info.dresstyleone.com/api/datapakets/getdatametode?tahun="+tahun+'&sk='+satuan
+      }
+
+      //const apiUrl = "http://localhost:8000/api/datapakets/getdatametode?tahun=" + tahun
+
+      const response = await fetch(api_)
       const barChatData = await response.json()
 
       const total = barChatData.data.map((x) => x.total)
