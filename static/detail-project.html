@@ -259,7 +259,7 @@
 		}
 		function getData(koderup) {
 			//console.log('data x', koderup)
-			const data_api = 'http://localhost:8000/api/datapakets/getkoderup?koderup='+koderup;
+			const data_api = 'https://info.dresstyleone.com/public/api/datapakets/getkoderup?koderup='+koderup;
 			fetch(data_api).then(res => res.json())
 				.then(res => {
 					str_body = ""
