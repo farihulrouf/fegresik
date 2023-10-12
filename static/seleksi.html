@@ -119,9 +119,9 @@
             <main class="content">
                 <div class="container-fluid p-0">
                     <div class="mb-3">
-                        <h1 class="h3 d-inline align-middle">Pengadaan Pengecualian</h1>
-                        <a class="badge bg-dark text-white ms-2" href="#">
-                            List data Pengecualian
+                        <h1 class="h3 d-inline align-middle">Seleksi</h1>
+                        <a class="badge bg-dark text-white ms-2" href="pengadaan-barang.html">
+                            List data Seleksi
                         </a>
                     </div>
                     <div class="row">
@@ -146,7 +146,7 @@
                     </div>
                 </div>
             </main>
-
+                
             <footer class="footer">
                 <div class="container-fluid">
                     <div class="row text-muted">
@@ -306,9 +306,10 @@
                     { data: "satuan_kerja" },
                     { data: "nama_paket",
                         "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                            $(nTd).html("<a href='detail-project.html'>"+oData.nama_paket+"</a>");
+                            $(nTd).html('<a href="javascript:callModal(\''+oData.kode_rup+'\',\''+oData.nama_paket+'\',\''+oData.satuan_kerja+'\',\''+oData.nilai_kontrak+'\')">' +oData.nama_paket+'</a>');
                         }
                      },
+                    // $(nTd).html("<a href=#"+"onclick='callModal('data');'>" + oData.nama_paket + "</a>"
                     { data: "metode_pengadaan" },
                     { data: "jenis" },
                     { data: "tgl_kontrak" },
@@ -319,7 +320,23 @@
                 ],
             });
         }
+        function callModal(data,nama_paket, satker, nilai_kontrak, metode){
+           // console.log('fungsi di panggil', data)
+            const dataPaket = {kode_rup:data, nama_paket:nama_paket, satker: satker, nilai_kontrak: nilai_kontrak, metode_pengadaan: metode};
+          //  console.log(dataPaket.kode_rup)
+           // console.log(dataPaket)
+            localStorage.setItem('datapaket', JSON.stringify(dataPaket));
 
+
+            //const datax = JSON.parse(localStorage.getItem('datapaket'));
+
+
+           // const datax = localStorage.getItem('datapaket');
+            //console.log(datax.kode_rup)
+            //const todos = [data, nama_paket, satker, nilai_kontrak ];
+            //localStorage.setItem("inputValue", dataPaket);
+            window.location.href = "detail-project.html";
+        }
     </script>
 </body>
 

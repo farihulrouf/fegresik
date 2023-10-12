@@ -24,7 +24,7 @@
 
 </head>
 
-<body onload="loadData()">
+<body onload="onloadData()">
     <div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
@@ -118,11 +118,11 @@
 
             <main class="content">
                 <div class="container-fluid p-0">
-                    <div class="mb-3">
-                        <h1 class="h3 d-inline align-middle">Puchasing</h1>
-                        <a class="badge bg-dark text-white ms-2" href="pengadaan-barang.html">
-                            List data E-purchasing
-                        </a>
+                   
+						
+					
+                    <div class="mb-6" id="dataperencanaan">
+                        
                     </div>
                     <div class="row">
                         <div class="col-12 col-lg-12">
@@ -133,12 +133,11 @@
                                         <th>Satuan Kerja</th>
                                         <th>Nama paket</th>
                                         <th>Metode Pengadaan.</th>
-                                        <th>Jenis</th>
-                                        <th>Tanggal Kontrak</th>
-                                        <th>Awal Pelaksanaan</th>
-                                        <th>Akhir Pelaksanaan</th>
+                                       
+                                        <th>Pagu paket</th>
                                         <th>Nilai Kontrak</th>
-                                        <th>Progress</th>
+                                        <th>Nilai HPS</th>
+                                   
                                     </tr>
                                 </thead>
                             </table>
@@ -278,23 +277,34 @@
             getData(text, datasatuan)
 
         });
+        
+        function onloadData(){
+            const datax = JSON.parse(localStorage.getItem('penyedia'));
+            console.log("info data", datax)
+            str_html=""
+			getData()
+			//console.log(datax)
+			str_html += `
+                     <h1 class="h3 d-inline align-middle"> ${datax.nama}</h1>
+                        <a class="badge bg-dark text-white ms-2" href="#">
+                            npwp: ${datax.npwp}
+                        </a>	  
+			`
+			$("#dataperencanaan").html(str_html)
 
-        function getData(text, dinas) {
-            var api_ = ""
-            if (dinas == "SELURUH SATUAN KERJA") {
-                api_ = "https://info.dresstyleone.com/public/api/datapakets/getdata?tahun="+text+'&metode=E-Purchasing'
-            }
-            else {
-                api_ = "https://info.dresstyleone.com/public/api/datapakets/getdata?tahun="+text+'&metode=E-Purchasing'+'&satuan='+dinas
-            }
-
+        }
+        function getData() {
+            
+            const datax = JSON.parse(localStorage.getItem('penyedia'));
+            const api='http://localhost:8000/api/datapakets/detailpemenang?idpemenang='
+			//getData(datax.kode_rup)
             var table = $("#datatable").DataTable({
                 prerender: true,
                 destroy: true,
                 ajax:
                 
                 {
-                    "url": api_,
+                    "url": "http://localhost:8000/api/datapakets/detailpemenang?idpemenang="+datax.id,
                     "type": "GET",
                     "dataType": "JSON"
                 },
@@ -311,15 +321,14 @@
                      },
                     // $(nTd).html("<a href=#"+"onclick='callModal('data');'>" + oData.nama_paket + "</a>"
                     { data: "metode_pengadaan" },
-                    { data: "jenis" },
-                    { data: "tgl_kontrak" },
-                    { data: "awal_pelaksanaan" },
-                    { data: "akhir_pelaksanaan" },
+                  
+                    { data: "pagu_paket" },
                     { data: "nilai_kontrak" },
-                    { data: "progress" },
+                    { data: "nilai_hps" }
                 ],
             });
         }
+       
         function callModal(data,nama_paket, satker, nilai_kontrak, metode){
            // console.log('fungsi di panggil', data)
             const dataPaket = {kode_rup:data, nama_paket:nama_paket, satker: satker, nilai_kontrak: nilai_kontrak, metode_pengadaan: metode};
