@@ -259,7 +259,8 @@
 		}
 		function getData(koderup) {
 			//console.log('data x', koderup)
-			const data_api = 'https://info.dresstyleone.com/public/api/datapakets/getkoderup?koderup='+koderup;
+			//const api_ = 'http://localhost:8000/api/datapakets/getdetaildata?koderup='
+			const data_api = 'http://localhost:8000/api/datapakets/getdetaildata?koderup='+koderup;
 			fetch(data_api).then(res => res.json())
 				.then(res => {
 					str_body = ""
@@ -276,7 +277,7 @@
 								  <tr>
 									
 									<td>Nilai Pagu Paket</td>
-									<td>Rp ${r["pagu_paket"].toString()
+									<td>Rp ${r["pagu_urp"].toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</td>
 									
 								  </tr>
@@ -289,6 +290,13 @@
 								  <tr>
 									<td>Nilai kontrak</td>
 									<td>Rp ${r["nilai_kontrak"].toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</td>
+									
+								  </tr>
+
+								  <tr>
+									<td>Efisiensi</td>
+									<td>Rp ${r["efisiensi"].toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</td>
 									
 								  </tr>

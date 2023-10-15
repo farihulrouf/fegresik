@@ -57,16 +57,16 @@
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="penyedia.html">
+            <a class="sidebar-link" href="monitoring.html">
               <i class="align-middle" data-feather="check-square"></i>
-              <span class="align-middle">Penyedia</span>
+              <span class="align-middle">Monitoring</span>
             </a>
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="pengadaan-konstruksi.html">
+            <a class="sidebar-link" href="penyedia.html">
               <i class="align-middle" data-feather="align-left"></i>
-              <span class="align-middle">Pengadaan konstruksi</span>
+              <span class="align-middle">Penyedia</span>
             </a>
           </li>
 
@@ -150,103 +150,46 @@
           </div>
 
           <div class="row">
-            <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
-              <div class="card flex-fill">
-                <div class="card-header">
-                  <h5 class="card-title mb-0"><a href="pengadaan-barang.html">Barang</a></h5>
-                </div>
-                <table class="table mb-0">
-                  <tbody>
-                    <tr>
-                      <td>Proses Tender</td>
-                      <td class="text-end">4306</td>
-                    </tr>
-                    <tr>
-                      <td>Batal Tender</td>
-                      <td class="text-end">3801</td>
-                    </tr>
-                    <tr>
-                      <td>Selesai Tender</td>
-                      <td class="text-end">1689</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <h4 class="p-2 mt-4 mb-2">Rp 169.037.690.021</h4>
+            <div class="col-12 col-md-6 col-xxl-4 d-flex order-1 order-xxl-1">
+              <div class="chart chart-sm">
+                <h5 class="card-title mb-0"><a href="#">Penunjukan Langsung</a></h5>
+                <canvas id="getpl"></canvas>
               </div>
             </div>
-            <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
-              <div class="card flex-fill">
-                <div class="card-header">
-                  <h5 class="card-title mb-0"><a href="pengadaan-konstruksi.html">Konstruksi</a></h5>
-                </div>
-
-                <table class="table mb-0">
-                  <tbody>
-                    <tr>
-                      <td>Proses Tender</td>
-                      <td class="text-end">4306</td>
-                    </tr>
-                    <tr>
-                      <td>Batal Tender</td>
-                      <td class="text-end">3801</td>
-                    </tr>
-                    <tr>
-                      <td>Selesai Tender</td>
-                      <td class="text-end">1689</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <h4 class="p-2 mt-4 mb-2">Rp 169.037.690.021</h4>
+            <div class="col-12 col-md-6 col-xxl-4 d-flex order-1 order-xxl-1">
+              <div class="chart chart-sm">
+                <h5 class="card-title mb-0"><a href="seleksi.html">Seleksi</a></h5>
+                <canvas id="seleksi"></canvas>
               </div>
             </div>
-            <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
-              <div class="card flex-fill">
-                <div class="card-header">
-                  <h5 class="card-title mb-0"><a href="jasa-konsultasi.html">Konsultasi</a></h5>
-                </div>
-
-                <table class="table mb-0">
-                  <tbody>
-                    <tr>
-                      <td>Proses Tender</td>
-                      <td class="text-end">4306</td>
-                    </tr>
-                    <tr>
-                      <td>Batal Tender</td>
-                      <td class="text-end">3801</td>
-                    </tr>
-                    <tr>
-                      <td>Selesai Tender</td>
-                      <td class="text-end">1689</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <h4 class="p-2 mt-4 mb-2">Rp 169.037.690.021</h4>
+            <div class="col-12 col-md-6 col-xxl-4 d-flex order-1 order-xxl-1">
+              <div class="chart chart-sm">
+                <h5 class="card-title mb-0"><a href="tender.html">Tender</a></h5>
+                <canvas id="tender"></canvas>
               </div>
             </div>
-            <div class="col-12 col-md-6 col-xxl-3 d-flex order-1 order-xxl-1">
-              <div class="card flex-fill">
-                <div class="card-header">
-                  <h5 class="card-title mb-0"><a href="jasa-lainya.html">Jasa Lainya</a></h5>
-                </div>
-
-                <table class="table mb-0">
-                  <tbody>
-                    <tr>
-                      <td>Proses Tender</td>
-                      <td class="text-end">4306</td>
-                    </tr>
-                    <tr>
-                      <td>Batal Tender</td>
-                      <td class="text-end">3801</td>
-                    </tr>
-                    <tr>
-                      <td>Selesai Tender</td>
-                      <td class="text-end">1689</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <h4 class="p-2 mt-4 mb-2">Rp 169.037.690.021</h4>
+            <div class="col-12 col-md-6 col-xxl-4 d-flex order-1 order-xxl-1">
+              <div class="chart chart-sm">
+                <h5 class="card-title mb-0"><a href="pengadaanlangsung.html">Langsung</a></h5>
+                <canvas id="pengadaanlangsung"></canvas>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-xxl-4 d-flex order-1 order-xxl-1">
+              <div class="chart chart-sm">
+                <h5 class="card-title mb-0"><a href="purchasing.html">Purchasing</a></h5>
+                <canvas id="purchase"></canvas>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-xxl-4 d-flex order-1 order-xxl-1">
+              <div class="chart chart-sm">
+                <h5 class="card-title mb-0"><a href="swakelola.html">Swakelola</a></h5>
+                <canvas id="swakelola"></canvas>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-xxl-4 d-flex order-1 order-xxl-1">
+              <div class="chart chart-sm">
+                <h5 class="card-title mb-0"><a href="pengecualian.html">Pengecualian</a></h5>
+                <canvas id="kecuali"></canvas>
               </div>
             </div>
           </div>
@@ -454,6 +397,13 @@
       // console.log(datasatuan)
       load_data(text, datasatuan)
       dataChart(text, datasatuan)
+      Swakelola(text, datasatuan)
+      Seleksi(text, datasatuan)
+      Tender(text, datasatuan)
+      Langsung(text, datasatuan)
+      Purchase(text, datasatuan)
+      Kecuali(text, datasatuan)
+      Pl(text, datasatuan)
 
     });
     $("#satuankerja").on("change", function () {
@@ -466,6 +416,15 @@
     })
 
     function load_data(tahun, datasatuan) {
+      
+      Swakelola(tahun, datasatuan)
+      Seleksi(tahun, datasatuan)
+      Tender(tahun, datasatuan)
+      Langsung(tahun, datasatuan)
+      Purchase(tahun, datasatuan)
+      Kecuali(tahun, datasatuan)
+      Pl(tahun, datasatuan)
+     // Langsung(tahun, datasatuan)
       // clear_data()
       var data_api = ''
       if (datasatuan == 'SELURUH SATUAN KERJA') {
@@ -579,7 +538,7 @@
       metode_name = name
     }
   </script>
-
+  <script src="js/grafik.js"></script>
 </body>
 
 </html>
