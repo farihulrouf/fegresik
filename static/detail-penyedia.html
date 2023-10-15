@@ -133,10 +133,7 @@
                                         <th>Satuan Kerja</th>
                                         <th>Nama paket</th>
                                         <th>Metode Pengadaan.</th>
-                                       
-                                        <th>Pagu paket</th>
                                         <th>Nilai Kontrak</th>
-                                        <th>Nilai HPS</th>
                                    
                                     </tr>
                                 </thead>
@@ -296,20 +293,22 @@
         function getData() {
             
             const datax = JSON.parse(localStorage.getItem('penyedia'));
-            const api='https://info.dresstyleone.com/public/api/datapakets/detailpemenang?idpemenang='
+            const api='http://localhost:8000/api/datapakets/detailpemenang?idpemenang='
 			//getData(datax.kode_rup)
+            //http://localhost:8000/api/datapakets/getwinpro?id=4
             var table = $("#datatable").DataTable({
                 prerender: true,
                 destroy: true,
                 ajax:
                 
                 {
-                    "url": "http://localhost:8000/api/datapakets/detailpemenang?idpemenang="+datax.id,
+                    "url": "http://localhost:8000/api/datapakets/getwinpro?id="+datax.id,
                     "type": "GET",
                     "dataType": "JSON"
                 },
             //    "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
             //$(nTd).html("<a href='tel:"+oData.TelephoneNumber+"'>"+oData.TelephoneNumber+"</a>");
+          
         //}
                 columns: [
                     { data: "kode_rup" },
@@ -321,10 +320,9 @@
                      },
                     // $(nTd).html("<a href=#"+"onclick='callModal('data');'>" + oData.nama_paket + "</a>"
                     { data: "metode_pengadaan" },
-                  
-                    { data: "pagu_paket" },
-                    { data: "nilai_kontrak" },
-                    { data: "nilai_hps" }
+              
+         
+                    { data: "nilai_kontrak" }
                 ],
             });
         }

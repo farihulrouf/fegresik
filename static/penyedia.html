@@ -277,10 +277,10 @@
         function getData(text, dinas) {
             var api_ = ""
             if (dinas == "SELURUH SATUAN KERJA") {
-                api_ = "https://info.dresstyleone.com/public/api/datapakets/getdata?tahun="+text+'&metode=Tender'
+                api_ = "http://localhost:8000/api/datapakets/getdata?tahun="+text+'&metode=Tender'
             }
             else {
-                api_ = "https://info.dresstyleone.com/public/api/datapakets/getdata?tahun="+text+'&metode=Tender'+'&satuan='+dinas
+                api_ = "http://localhost:8000/api/datapakets/getdata?tahun="+text+'&metode=Tender'+'&satuan='+dinas
             }
 
             var table = $("#datatable").DataTable({
@@ -289,7 +289,7 @@
                 ajax:
                 
                 {
-                    "url": "https://info.dresstyleone.com/public/api/datapakets/getpenyedia",
+                    "url": "http://localhost:8000/api/datapakets/getpenyedia",
                     "type": "GET",
                     "dataType": "JSON"
                 },
